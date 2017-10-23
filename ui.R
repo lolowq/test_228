@@ -12,9 +12,10 @@ dashboardPage(
     # tabItems(
     #   tabItem(tabName = "map_view",
     #absolutePanel(),
+
         fluidRow(
-          box(
-            tabPanel("Interactive map",
+          tabBox(
+            tabPanel("Tab1",
                div(class="outer",
 
                    tags$head(
@@ -27,18 +28,19 @@ dashboardPage(
                    absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
                                  draggable = TRUE, top = 60, left = "auto", right = 20, bottom = "auto",
                                  width = 330, height = "auto",
-                                 selectInput("select", "Select search",
-                                             c( "City", "Name"),
-                                             selected = "City"),
+                                 textInput("dynamic_value","Введите город","Россия"),
                           
-                          uiOutput("ui"),
+                          #uiOutput("ui"),
                           #verbatimTextOutput("dynamic_value"),
+                          #textInput("dynamic_value","","Россия"),
+                          uiOutput("ui1")
                           
-                          uiOutput("ui1"),
-                          textInput("dynamic_value","","Россия")
                    ))
 
-      ))
+      ),
+      tabPanel("Tab2","Tab content 2")
+      
+      )
       # ))
       
       

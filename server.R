@@ -9,7 +9,9 @@ library(ggmap)
 
 
 gap <- gs_title("Input_data")
+pop <- gs_title("City_population")
 data <- gs_read(gap)
+data_pop <- gs_read(pop)
 data_new <- data
 #write.table(data,'out_data.csv',sep = ";")
 #bob[] <- lapply(bob, as.character)

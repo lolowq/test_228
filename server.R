@@ -9,7 +9,9 @@ library(ggmap)
 
 
 gap <- gs_title("Input_data")
+pop <- gs_title("City_population")
 data <- gs_read(gap)
+data_pop <- gs_read(pop)
 data_new <- data
 #write.table(data,'out_data.csv',sep = ";")
 #bob[] <- lapply(bob, as.character)
@@ -100,8 +102,8 @@ function(input, output, session) {
   output$dynamic_value <- renderPrint({
     input$dynamic
   })
-  output$table <- DT::renderDataTable(data_new,
-                                      options = list(orderClasses = TRUE, pageLength = 100))
+  output$table <- DT::renderDataTable(data_pop,
+                                      options = list(orderClasses = TRUE, pageLength = 100, escape = FALSE))
 }
 # Search <- "Шатров Никита"
 # 

@@ -14,31 +14,17 @@ key <- "AIzaSyA6s8VCdjeEWlsaQTIxGLnIjfJN9PcLKA0"
 # render("../dashboard.Rmd")
 
 Logged <- FALSE
-my_username <- "q"
-my_password <- "q"
+login <- gs_title("user_data")
+login_data <- gs_read(login)
+
+my_username <- login_data$User
+my_password <- login_data$Pass
 
 gap <- gs_title("Input_data")
 pop <- gs_title("City_population")
 data <- gs_read(gap)
 data_pop <- gs_read(pop)
 data_new <- data
-#write.table(data,'out_data.csv',sep = ";")
-#bob[] <- lapply(bob, as.character)
-# data$Circuit <-lapply(data$Circuit,as.character)
-# data$Circuit[is.na(data$Circuit)] <- ' '
-# translite_cinema <- paste(sep = "<br/>",
-#                           data$Name,
-#                           data$Circuit,
-#                           data$Booker,
-#                           data$Screen)
-#paste(data$Name," " ,data$Circuit," " ,data$Booker, " ", data$Screen)
-# input_data <- function(num){
-#   
-#   switch( num,
-#           read_excel("cinemas.xlsx"),
-#           read_excel("cinemas_all_info.xls")
-#   )
-# }
 
 function(input, output, session) {
   
@@ -104,21 +90,12 @@ function(input, output, session) {
     
   })
   
-  # leafletProxy("map", data = data_new) %>%
-  #   clearShapes() %>%
-  #   addCircles(~longitude, ~latitude, radius=radius, layerId=~zipcode,
-  #              stroke=FALSE, fillOpacity=0.4, fillColor=pal(colorData)) %>%
-  #   addLegend("bottomleft", pal=pal, values=colorData, title=colorBy,
-  #             layerId="colorLegend")
-  
   output$dynamic_value <- renderPrint({
     input$dynamic
   })
   output$table <- DT::renderDataTable(data_pop,
                                       options = list(orderClasses = TRUE, pageLength = 100, escape = FALSE))
- 
-  
-  values <- reactiveValues(authenticated = FALSE)
+   values <- reactiveValues(authenticated = FALSE)
   
   # Return the UI for a modal dialog with data selection input. If 'failed' 
   # is TRUE, then display a message that the previous value was invalid.
@@ -128,7 +105,7 @@ function(input, output, session) {
       passwordInput("password", "Password:"),
       footer = tagList(
         # modalButton("Cancel"),
-        actionButton("ok", "OK")
+        actionButton("ok", "Login")
       )
     )
   }
@@ -170,6 +147,4 @@ function(input, output, session) {
     else "You are NOT authenticated"
   })
 }
-# Search <- "Шатров Никита"
-# 
-# data[which(data$Booker == Search),  ]
+

@@ -4,18 +4,17 @@ library(shinydashboard)
 dashboardPage(
   dashboardHeader(title = "Open cinema Russia"),
   dashboardSidebar(
-    disable = TRUE
-    #menuItem("Add cinemas", tabName = "new_cinema", icon = icon("dashboard")),
-    #menuItem("Map", tabName = "map_view", icon = icon("th"))
+    #disable = TRUE
+    menuItem("Map", tabName = "map_view", icon = icon("globe")),
+    menuItem("Table city", tabName = "table_city", icon = icon("table"))
   ),
   dashboardBody(
-    # tabItems(
-    #   tabItem(tabName = "map_view",
+    tabItems(
+      tabItem(tabName = "map_view",
     #absolutePanel(),
 
-        fluidRow(
-          tabBox(
-            tabPanel("Tab1",
+        # fluidRow(
+        # tabBox(
                div(class="outer",
 
                    tags$head(
@@ -29,18 +28,21 @@ dashboardPage(
                                  draggable = TRUE, top = 60, left = "auto", right = 20, bottom = "auto",
                                  width = 330, height = "auto",
                                  textInput("dynamic_value","Введите город","Россия"),
-                          
+                          #h2("Cinema explorer"),
                           #uiOutput("ui"),
                           #verbatimTextOutput("dynamic_value"),
                           #textInput("dynamic_value","","Россия"),
                           uiOutput("ui1")
                           
-                   ))
+                   )
 
-      ),
-      tabPanel("Tab2","Tab content 2")
+      )),
       
-      )
+      tabItem(tabName = "table_city",
+               DT::dataTableOutput("table"))
+      
+      )))
+  # conditionalPanel("false", icon("crosshair"))
       # ))
       
       
@@ -64,5 +66,5 @@ dashboardPage(
       #               DT::dataTableOutput('table'))
       # 
       # ))
-  )
-))
+  #)
+# ))

@@ -22,7 +22,7 @@ h1, h2, h3, h4 { font-weight: 400; }
 #controls {
   /* Appearance */
   background-color: white;
-  padding: 0 20px 20px 20px;
+  padding: 20px;
   cursor: move;
   /* Fade out while not hovering */
   opacity: 0.65;
@@ -48,3 +48,6 @@ h1, h2, h3, h4 { font-weight: 400; }
   background-color: white !important;
 }
 
+.ui-widget {
+	display: none;
+}

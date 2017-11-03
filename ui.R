@@ -44,7 +44,15 @@ dashboardPage(
             top = 60, left = "auto", right = 20, bottom = "auto",
             width = 330, height = "auto",
             textInput("dynamic_value", "Введите город", "Россия"),
-            uiOutput("ui1")
+            # checkboxGroupInput("check_options", label = "Выберите данные, которые необходимо показать на карте", 
+            #                    choices = list("Cinema" = 1, "City" = 2),
+            #                    selected = 2),
+            checkboxInput("legend_cinema", "Cinema", FALSE),
+            checkboxInput("legend_city", "City", FALSE),
+            sliderInput("range", "Cinema screen", min(clear_data$Screen), max(clear_data$Screen),
+                        value = range(clear_data$Screen), step = 1
+            )
+            #uiOutput("ui1")
           )
         )
       ),
